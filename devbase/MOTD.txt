@@ -1,0 +1,53 @@
+## Container Build: Generic Ubuntu install
+# File Author / Maintainer: Mike Rais
+
+
+## Install list
+# apt-get update updates the list of available packages and their versions, but it does not install or upgrade any packages.
+apt-get update
+
+# apt-get upgrade actually installs newer versions of the packages you have. After updating the lists, the package manager knows about available updates for the software you have installed. This is why you first want to update
+apt-get upgrade
+apt-get check
+
+
+## Timezone change if necessary
+dpkg-reconfigure tzdata
+
+
+## Devbase Package List
+apt-get -y install man-db
+apt-get install wget
+apt-get install curl
+apt-get install tree
+apt-get -y install netcat
+apt-get install screen
+apt-get -y install mysql-client
+apt-get -y install git
+apt-get -y install iptables
+apt-get install strace
+apt-get -y install openssh-server
+
+
+## Customization list
+# MySQL ref:  
+	REF: https://ariejan.net/2007/12/12/how-to-install-mysql-on-ubuntudebian/
+sudo apt-get install mysql-server mysql-client
+
+
+# Jenkins ref
+	REF:  https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
+	*) wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+	*) sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+	*) sudo apt-get update
+	*) sudo apt-get install jenkins
+
+
+# SSHD usage ref
+On server, the sshd service started as follows;
+	*) service ssh start
+	-or- (if not spun up by Docker)
+	*) /usr/sbin/sshd -D &
+
+If redirecting ssh to ${port} (e.g.  MBP retaining port 22 - likely virt. machine), you can connect as follows where ${port} is what you redirected/exposed on the container
+	*) ssh developer@192.168.59.103 -p ${port}
