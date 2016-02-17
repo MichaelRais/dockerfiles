@@ -32,7 +32,7 @@ apt-get -y install openssh-server
 ## Customization list
 # MySQL ref:  
 	REF: https://ariejan.net/2007/12/12/how-to-install-mysql-on-ubuntudebian/
-sudo apt-get install mysql-server mysql-client
+	*) sudo apt-get install mysql-server mysql-client
 
 
 # Jenkins ref
